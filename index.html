@@ -10,12 +10,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root{
-      /* Pastel yellow on dark theme */
       --bg: #0B0C10;
       --bg-soft: #111318;
       --text: #EDEEF2;
       --muted: #A8ACB8;
-      --yellow: #FFE88A;          /* primary pastel */
+      --yellow: #FFE88A;
       --yellow-2: #FFE06A;
       --yellow-3: #FFD84A;
       --outline: rgba(255, 232, 138, 0.35);
@@ -29,8 +28,10 @@
     html, body { height: 100%; }
     html{ scroll-behavior: smooth; }
     body{
-      margin:0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji";
-      color: var(--text); background: radial-gradient(1200px 800px at 70% -20%, rgba(255, 232, 138, 0.07), transparent 60%), var(--bg);
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color: var(--text);
+      background: radial-gradient(1200px 800px at 70% -20%, rgba(255, 232, 138, 0.07), transparent 60%), var(--bg);
       overflow-x: hidden;
     }
     a{ color: inherit; text-decoration: none; }
@@ -53,8 +54,7 @@
     .hero{ position: relative; padding: 96px 0 80px; }
     .grid-hero{ display:grid; grid-template-columns: 1.1fr 0.9fr; gap: 28px; align-items:center; }
     .title{ font-size: clamp(42px, 7vw, 70px); line-height: 1.02; font-weight: 900; letter-spacing: -0.02em; }
-    .title .accent{ background: linear-gradient(90deg, var(--yellow), var(--yellow-3)); -webkit-background-clip: text; background-clip: text; color: transparent; text-shadow: 0 0 30px rgba(255,232,138,0.25);
-    }
+    .title .accent{ background: linear-gradient(90deg, var(--yellow), var(--yellow-3)); -webkit-background-clip: text; background-clip: text; color: transparent; text-shadow: 0 0 30px rgba(255,232,138,0.25); }
     .subtitle{ margin-top: 16px; font-size: 18px; color: var(--muted); max-width: 56ch; }
 
     .cta-row{ display:flex; gap: 16px; margin-top: 28px; align-items:center; flex-wrap: wrap; }
@@ -90,14 +90,48 @@
     /* Projects grid */
     .projects{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
     .project{
-      position: relative; overflow:hidden; border-radius: var(--radius); border:1px solid rgba(255, 232, 138, 0.15); background: #0e1117;
+      position: relative; overflow:hidden; border-radius: var(--radius);
+      border:1px solid rgba(255, 232, 138, 0.15);
+      background: #0e1117;
+      transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
     }
-    .project .thumb{ aspect-ratio: 16/9; background: linear-gradient(135deg, rgba(255,232,138,0.25), rgba(255,232,138,0.05)); display:flex; align-items:center; justify-content:center; font-weight:800; color:#0b0c10; }
+    .project:hover{
+      transform: translateY(-6px) scale(1.02);
+      border-color: rgba(255, 232, 138, 0.45);
+      box-shadow: 0 0 25px rgba(255, 232, 138, 0.35);
+    }
+
+    .project .thumb{
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255, 232, 138, 0.12);
+    }
+    .project .thumb img{
+      width:100%; height:100%; object-fit:cover;
+      transition: transform .4s ease, filter .4s ease;
+    }
+    .project:hover .thumb img{
+      transform: scale(1.05);
+      filter: brightness(1.15);
+    }
     .project .body{ padding: 14px; }
 
     /* Pricing */
     .pricing{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-    .price-card{ background: linear-gradient(180deg, rgba(255,232,138,0.08), rgba(255,232,138,0.02)); border: 1px solid var(--outline); border-radius: var(--radius); padding: 22px; position: relative; overflow: hidden; }
+    .price-card{
+      background: linear-gradient(180deg, rgba(255,232,138,0.08), rgba(255,232,138,0.02));
+      border: 1px solid var(--outline);
+      border-radius: var(--radius);
+      padding: 22px;
+      position: relative;
+      overflow: hidden;
+      transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+    }
+    .price-card:hover{
+      transform: translateY(-6px) scale(1.02);
+      border-color: rgba(255, 232, 138, 0.45);
+      box-shadow: 0 0 25px rgba(255, 232, 138, 0.35);
+    }
     .price{ font-size: 34px; font-weight: 900; margin: 8px 0; }
     .price small{ font-weight: 600; color: var(--muted); font-size: 13px; }
     .check{ margin-right: 8px; color: var(--yellow-2); }
@@ -114,7 +148,6 @@
     .blob.yellow{ width: 560px; height: 560px; background: radial-gradient(circle, var(--yellow) 0%, transparent 65%); top:-120px; left:-120px; }
     .blob.gold{ width: 520px; height: 520px; background: radial-gradient(circle, var(--yellow-3) 0%, transparent 70%); bottom:-140px; right:-140px; }
 
-    /* Desktop focus (user requested PC only) */
     @media (max-width: 980px){
       .cards, .projects, .pricing, .grid-hero{ grid-template-columns: 1fr; }
       .hero{ padding-top: 70px; }
@@ -125,7 +158,6 @@
   <div class="blob yellow" id="blob1"></div>
   <div class="blob gold" id="blob2"></div>
 
-  <!-- NAV -->
   <nav class="nav">
     <div class="container nav-inner">
       <div class="brand"><span class="brand-dot"></span> s4r7</div>
@@ -134,19 +166,17 @@
         <a href="#skills">Skills</a>
         <a href="#projects">Projects</a>
         <a href="#pricing">Pricing</a>
-        <a href="#contact" class="btn btn-primary btn-glow" title="Contact on Discord">Contact</a>
+        <a href="#contact" class="btn btn-primary btn-glow">Contact</a>
       </div>
     </div>
   </nav>
 
-  <!-- HERO -->
   <header class="hero">
     <div class="container grid-hero">
       <div>
         <h1 class="title reveal">Hey, I'm <span class="accent">s4r7</span>.<br/> I build <span class="accent">Minecraft plugins</span> & <span class="accent">Discord bots</span>.</h1>
         <p class="subtitle reveal" style="transition-delay:.08s">Hey! I'm a Minecraft Plugin and Discord Bot developer!</p>
         <div class="cta-row reveal" style="transition-delay:.12s">
-          <!-- Replace YOUR_DISCORD_ID with your numeric Discord user ID -->
           <a class="btn btn-primary btn-glow" href="https://discord.com/users/YOUR_DISCORD_ID" target="_blank" rel="noopener">Contact on Discord</a>
           <a class="btn btn-ghost" href="#projects">View Projects</a>
         </div>
@@ -172,11 +202,10 @@
     </div>
   </header>
 
-  <!-- ABOUT -->
   <section id="about">
     <div class="container">
       <h2 class="section-title reveal">About</h2>
-      <p class="section-sub reveal" style="max-width:70ch">I'm a Developer, I deliver quick and take quality into account. Everything I make is premium and is made with ❤️</p>
+      <p class="section-sub reveal" style="max-width:70ch">I'm a Developer, I deliver quick and take quality into account. Everything I make is premium and made with ❤️</p>
       <div class="cards">
         <div class="card reveal"><h4>Focus</h4><p class="muted">Developing amazing high quality plugins & bots for you!</p></div>
         <div class="card reveal" style="transition-delay:.06s"><h4>Experience</h4><p class="muted">Java (Paper/Spigot), Python (discord.py).</p></div>
@@ -185,7 +214,6 @@
     </div>
   </section>
 
-  <!-- SKILLS -->
   <section id="skills">
     <div class="container">
       <h2 class="section-title reveal">Skills</h2>
@@ -202,38 +230,42 @@
     </div>
   </section>
 
-  <!-- PROJECTS -->
   <section id="projects">
     <div class="container">
       <h2 class="section-title reveal">Projects</h2>
       <p class="section-sub reveal">A few highlights from me.</p>
       <div class="projects">
         <article class="project reveal">
-          <div class="thumb">Donut Style</div>
+          <div class="thumb">
+            <img src="images/donutstyle.png" alt="Donut Style Project">
+          </div>
           <div class="body">
-            <strong>Queue + Store + RTP</strong>
-            <p class="muted">Donut‑style systems with polished GUIs and fully configurable.</p>
+            <strong>Donut Style</strong>
+            <p class="muted">Queue + Store + RTP — donut-style systems with polished GUIs and full configs.</p>
           </div>
         </article>
         <article class="project reveal" style="transition-delay:.06s">
-          <div class="thumb">Purge Tiers</div>
+          <div class="thumb">
+            <img src="images/purgetiers.png" alt="Purge Tiers">
+          </div>
           <div class="body">
-            <strong>Tier‑Testing Discord Bot</strong>
-            <p class="muted">Requests, cooldowns, private tickets, staff‑gated ranks, auto‑expiry, and more.</p>
+            <strong>Purge Tiers</strong>
+            <p class="muted">Tier-Testing Discord Bot — requests, cooldowns, private tickets, staff-gated ranks, auto-expiry, and more.</p>
           </div>
         </article>
         <article class="project reveal" style="transition-delay:.12s">
-          <div class="thumb">DNA SMP</div>
+          <div class="thumb">
+            <img src="images/dna.png" alt="DNA SMP Plugin">
+          </div>
           <div class="body">
-            <strong>A Great SMP Plugin</strong>
-            <p class="muted">Custom DNA adding via config (WIP) and more.</p>
+            <strong>DNA SMP</strong>
+            <p class="muted">A custom SMP plugin with DNA configuration and advanced systems.</p>
           </div>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- PRICING -->
   <section id="pricing">
     <div class="container">
       <h2 class="section-title reveal">Pricing</h2>
@@ -244,9 +276,9 @@
           <div class="price">$5 <small>small fix / mini feature</small></div>
           <p class="muted"><span class="check">✔</span>1 small plugin change or bot command</p>
           <p class="muted"><span class="check">✔</span>Quick turnaround</p>
-          <p class="muted"><span class="check">✔</span>Post‑delivery tweak</p>
+          <p class="muted"><span class="check">✔</span>Post-delivery tweak</p>
         </div>
-        <div class="price-card reveal" style="border-color: rgba(255,232,138,.55); box-shadow: 0 14px 60px rgba(255,232,138,.12);">
+        <div class="price-card reveal">
           <h4>Pro</h4>
           <div class="price">$15 <small>feature or small system</small></div>
           <p class="muted"><span class="check">✔</span>1 full feature (GUI, queue, or bot module)</p>
@@ -256,15 +288,14 @@
         <div class="price-card reveal">
           <h4>Ultimate</h4>
           <div class="price">$30+ <small>custom system</small></div>
-          <p class="muted"><span class="check">✔</span>End‑to‑end plugin or Discord suite</p>
-          <p class="muted"><span class="check">✔</span>Multi‑component integration</p>
+          <p class="muted"><span class="check">✔</span>End-to-end plugin or Discord suite</p>
+          <p class="muted"><span class="check">✔</span>Multi-component integration</p>
           <p class="muted"><span class="check">✔</span>Launch support</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CONTACT -->
   <section id="contact">
     <div class="container">
       <h2 class="section-title reveal">Contact</h2>
@@ -283,33 +314,22 @@
   </footer>
 
   <script>
-    // Fill year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Intersection Observer for reveal animations
     const io = new IntersectionObserver((entries)=>{
       entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } });
     }, {threshold: 0.15});
     document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
 
-    // Parallax blobs
     const blob1 = document.getElementById('blob1');
     const blob2 = document.getElementById('blob2');
-    let lastY = window.scrollY;
     const tick = ()=>{
-      const y = window.scrollY; const dx = (window.innerWidth/2 - (window.scrollX + window.innerWidth/2)) * 0.0;
-      blob1.style.transform = `translate(${dx}px, ${y*0.06}px)`;
-      blob2.style.transform = `translate(${-dx}px, ${-y*0.04}px)`;
-      lastY = y; requestAnimationFrame(tick);
+      const y = window.scrollY;
+      blob1.style.transform = `translateY(${y*0.06}px)`;
+      blob2.style.transform = `translateY(${-y*0.04}px)`;
+      requestAnimationFrame(tick);
     };
     requestAnimationFrame(tick);
   </script>
-
-  <!-- OPTIONAL: Replace this block with your own React build later. -->
-  <!--
-    This single-file setup uses HTML + JS with React-like component structure ideas,
-    but no build tools. If you want *true React* with components, routing, etc.,
-    deploy a Vite + React app and copy the markup/styles from this page.
-  -->
 </body>
 </html>
